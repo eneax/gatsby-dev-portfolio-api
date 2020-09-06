@@ -6,7 +6,25 @@ _[Strapi](https://strapi.io/)_ Headless CMS represents the backend of my _[gatsb
 
 ## 🚀 Quick start
 
-First, clone this repo and run it locally:
+In this project, I've connected Strapi to [Cloudinary](https://cloudinary.com/), so before running it locally, you need to use your own Cloudinary credentials in `config/plugins.js`:
+
+```js
+if (process.env.NODE_ENV === "production") {
+  module.exports = ({ env }) => ({
+    provider: "cloudinary",
+    providerOptions: {
+      cloud_name: env("CLOUDINARY_NAME"),
+      api_key: env("CLOUDINARY_KEY"),
+      api_secret: env("CLOUDINARY_SECRET"),
+    },
+  });
+} else {
+  // to use the default local provider you can return an empty configuration
+  module.exports = {};
+}
+```
+
+Then, on your terminal:
 
 ```shell
   npm i
